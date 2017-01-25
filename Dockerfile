@@ -33,4 +33,4 @@ VOLUME ${WORKDIR}/notebooks
 WORKDIR ${WORKDIR}/notebooks
 ENTRYPOINT ["/init"]
 CMD ["jupyter", "notebook", "--no-browser", "--port=8888", "--ip=0.0.0.0", \
-"--config=${WORKDIR}/jupyter_notebook_config.json"]
+"--config=${WORKDIR}/.jupyter/jupyter_notebook_config.json"]
