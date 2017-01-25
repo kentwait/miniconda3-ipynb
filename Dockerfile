@@ -23,7 +23,10 @@ RUN cd ${WORKDIR} \
  && jupyter-serverextension disable nbpresent --py --sys-prefix \
  # remove packages and clean up 
  && apk del temp-pkgs \
- && rm -rf /tmp/* /var/cache/apk/* /opt/conda/pkgs/* ~/.wget-hsts ~/.[acpw]* ${WORKDIR}/installer.sh 
+ && rm -rf /tmp/* /var/cache/apk/* /opt/conda/pkgs/* ~/.wget-hsts ~/.[acpw]* ${WORKDIR}/installer.sh
+# Set token as empty string - also disables authenticating token for XSRF protection
+RUN jupyter notebook --generate-config \
+  && echo "c.NotebookApp.token = ''" >> /root/.jupyter/jupyter_notebook_config.py
 
 EXPOSE 8888
 VOLUME ${WORKDIR}/notebooks
